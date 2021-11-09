@@ -1,0 +1,170 @@
+* {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  text-transform: capitalize;
+  font-size: 22px;
+}
+
+/* header */
+
+.app-header {
+  padding: 10px;
+  height: 5vh;
+  background-color: lightslategray;
+  /* text-align: center; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* book-app */
+
+.app-main {
+  min-height: 90vh;
+  background-color: rgb(228, 229, 230);
+}
+
+/* filter */
+
+.book-filter {
+  padding: 20px;
+  background-color: rgb(208, 214, 214);
+  text-align: center;
+}
+
+/* list */
+
+.book-list {
+  margin: 0;
+  padding: 20px;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+/* preview */
+
+.book-preview-container {
+  font-size: 20px;
+  padding: 15px;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 1.7rem;
+}
+.book-preview img {
+  max-width: 90%;
+}
+
+.book-preview .sale-img {
+  width: 60px;
+  position: absolute;
+}
+/* details */
+
+.book-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+.book-details p {
+  display: flex;
+  flex-direction: column;
+  padding: 2px;
+}
+
+.red {
+  color: red;
+}
+
+.green {
+  color: seagreen;
+}
+.book-details img {
+  float: right;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  max-width: 50%;
+}
+
+.hide {
+  display: none;
+}
+
+/* home page */
+
+.home-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 20px;
+}
+
+/* about */
+.about-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 20px;
+}
+img.about-img {
+  width: 70%;
+}
+
+.user-msg {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  padding: 10px;
+}
+
+.success {
+  background-color: rgb(27, 180, 27);
+}
+
+.error {
+  background-color: red;
+}
+
+/* animations */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* footer */
+
+.app-footer {
+  padding: 10px;
+  height: 5vh;
+  background-color: lightslategray;
+}
