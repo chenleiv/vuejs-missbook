@@ -3,7 +3,7 @@ import homePage from './pages/home-page.cmp.js';
 import aboutPage from './pages/about-page.cmp.js';
 import bookDetails from './pages/book-details.cmp.js';
 import bookEdit from './pages/book-edit.cmp.js';
-import bookAdd from './pages/book-add.cmp.js'
+import bookAdd from './cmps/book-add.cmp.js'
 
 const routes = [
   {

@@ -2,6 +2,7 @@ import { bookService } from '../services/book.service.js';
 import { eventBus } from '../services/event-bus.service.js';
 import bookList from '../cmps/book-list.cmp.js';
 import bookFilter from '../cmps/book-filter.cmp.js';
+import bookAdd from '../cmps/book-add.cmp.js'
 
 // import bookEdit from './book-edit.cmp.js';
 
@@ -9,6 +10,7 @@ export default {
   template: `
         <section class="book-app app-main">
         <book-filter @filtered="setFilter"></book-filter>
+        <book-add @addSuccess="addNewBook"></book-add>
 <book-list :books="booksToShow"></book-list>
 <!-- <book-details @close="closeDetails"></book-details> -->
 
@@ -25,14 +27,15 @@ export default {
     this.loadBooks();
   },
   methods: {
+    addNewBook() {
+      this.loadBooks()
+    },
     loadBooks() {
       bookService.query().then((res) => {
         this.books = res;
       });
     },
-    // selectBook(book) {
-    //   this.selectedBook = book;
-    // },
+
     closeDetails() {
       this.selectedBook = null;
     },
@@ -60,6 +63,7 @@ export default {
     bookList,
     bookFilter,
     eventBus,
+    bookAdd,
 
   },
 };

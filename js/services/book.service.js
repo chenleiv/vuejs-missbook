@@ -9,7 +9,8 @@ export const bookService = {
   getById,
   save,
   remove,
-  getBooksApi,
+  getBooksGoogleApi,
+  addGoogleBook,
 };
 
 function query() {
@@ -32,10 +33,43 @@ function remove(bookId) {
 }
 
 
-function getBooksApi() {
-  return axios.get(`https://www.googleapis.com/books/v1/volumes?printType=books&q=${v}`)
-    .then(res => res.data)
-    .then(res => console.log(res))
+function getBooksGoogleApi(searchBy) {
+  return storageService.query(searchBy)
+    .then(googleBooks => {
+      if (googleBooks.length) {
+        console.log('from storage')
+        return googleBooks
+      }
+      return axios.get(`https://www.googleapis.com/books/v1/volumes?printType=books&q=${searchBy}`)
+        .then(res => res.data.items)
+        .then(googleBooks => {
+          console.log('from axios');
+          return storageService.post(searchBy, googleBooks)
+            .then(googleBooks => googleBooks)
+        })
+    })
+}
+function addGoogleBook(googleBook) {
+  console.log('google book from service', googleBook);
+  const { subtitle, title, publishedDate, description, pageCount, imageLinks, language, authors } = googleBook.volumeInfo
+  let amount = getRandomInt(50, 200)
+  const newBook = {
+    title: title,
+    subtitle: subtitle || 'No subtitle',
+    authors: authors || 'No authors',
+    publishedDate: publishedDate || 'No publishedDate',
+    description: description || 'No description',
+    pageCount: pageCount || 'No pageCount',
+    thumbnail: imageLinks.thumbnail || 'No thumbnail',
+    language: language || 'No language',
+    listPrice: {
+      amount: amount,
+      currencyCode: 'ILS',
+      isOnSale: false
+    }
+  }
+  console.log('newBook from service', newBook);
+  return storageService.post(BOOK_KEY, newBook)
 }
 
 
@@ -416,4 +450,11 @@ function _createBooks() {
     utilService.saveToStorage(BOOK_KEY, books);
   }
   return books;
+}
+
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
