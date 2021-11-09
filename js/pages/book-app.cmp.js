@@ -2,7 +2,6 @@ import { bookService } from '../services/book.service.js';
 import { eventBus } from '../services/event-bus.service.js';
 import bookList from '../cmps/book-list.cmp.js';
 import bookFilter from '../cmps/book-filter.cmp.js';
-// import bookDetails from './book-details.cmp.js';
 
 // import bookEdit from './book-edit.cmp.js';
 
@@ -61,6 +60,6 @@ export default {
     bookList,
     bookFilter,
     eventBus,
-    // bookDetails,
+
   },
 };

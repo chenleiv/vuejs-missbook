@@ -9,6 +9,7 @@ export const bookService = {
   getById,
   save,
   remove,
+  getBooksApi,
 };
 
 function query() {
@@ -29,6 +30,14 @@ function remove(bookId) {
   gBooks.splice(idx, 1);
   utilService.saveToStorage(BOOK_KEY, books);
 }
+
+
+function getBooksApi() {
+  return axios.get(`https://www.googleapis.com/books/v1/volumes?printType=books&q=${v}`)
+    .then(res => res.data)
+    .then(res => console.log(res))
+}
+
 
 function _createBooks() {
   let books = utilService.loadFromStorage(BOOK_KEY);
