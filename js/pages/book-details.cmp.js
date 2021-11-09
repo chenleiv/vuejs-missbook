@@ -30,7 +30,9 @@ export default {
            <br>
            <br>
            <router-link to="/book/"> back to books </router-link>
-
+           <br>
+        <router-link :to="'/book/'+prevBookId">< Previous Book</router-link>
+            <router-link :to="'/book/'+nextBookId">Next Book ></router-link>
         </section>
             <section v-else class="loader app-main">
                 <h2>Loading...</h2>
@@ -39,6 +41,8 @@ export default {
   data() {
     return {
       book: null,
+      nextBookId: null,
+      prevBookId: null,
     };
   },
   created() {
@@ -105,6 +109,20 @@ export default {
       if (this.book.publishedDate > year - 10) return 'Veteran Book';
       if (this.book.publishedDate < year - 1) return 'New';
     },
+  },
+  watch: {
+    '$route.params.bookId': {
+      handler() {
+        const { bookId } = this.$route.params;
+        bookService.getById(bookId)
+          .then(book => this.book = book)
+        bookService.getNextBookId(bookId)
+          .then(bookId => this.nextBookId = bookId)
+        bookService.getPrevBookId(bookId)
+          .then(bookId => this.prevBookId = bookId)
+      },
+      immediate: true
+    }
   },
   components: {
     bookDescription,

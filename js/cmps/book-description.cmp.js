@@ -4,12 +4,14 @@ export default {
         <section class="book-description">
         <p v-if="isFullLeng"> description:{{bookDescription}} </p>
         <button :class="showBtn" @click="isShow = !isShow" >{{showTxt}}</button>
+
         </section>
     `,
   data() {
     return {
       isShow: false,
       isFullLeng: true,
+
     };
   },
   computed: {
@@ -26,5 +28,5 @@ export default {
     showBtn() {
       return this.description.length > 100 ? 'show' : 'hide';
     },
-  },
+  }
 };
